@@ -78,10 +78,10 @@ jobs:
 
       - name: Build iOS app
         working-directory: iosApp
+        # Only arm64: the template has no Intel (x86_64) simulator target.
         run: >
           xcodebuild -project iosApp.xcodeproj -scheme iosApp -configuration Debug
-          -sdk iphonesimulator -destination 'generic/platform=iOS Simulator'
-          CODE_SIGNING_ALLOWED=NO build
+          -sdk iphonesimulator -arch arm64 CODE_SIGNING_ALLOWED=NO build
 
       - name: Upload reports
         if: failure()
