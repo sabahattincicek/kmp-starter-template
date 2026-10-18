@@ -1,0 +1,4 @@
+<resources>
+    <string name="ui_retry">Retry</string>
+    <string name="ui_error_generic">Something went wrong. Please try again.</string>
+</resources>

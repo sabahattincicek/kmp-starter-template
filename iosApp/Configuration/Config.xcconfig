@@ -1,0 +1,4 @@
+// iOS app settings. TEAM_ID is your Apple developer team id (needed to run on a real device).
+TEAM_ID=
+BUNDLE_ID=com.template.kmpstarter
+APP_NAME=KMP Starter

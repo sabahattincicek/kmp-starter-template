@@ -1,0 +1,11 @@
+{
+  "name": "sqlite-web-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web worker that runs SQLite (WASM) for Room's WebWorkerSQLiteDriver on the web target.",
+  "main": "worker.js",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@sqlite.org/sqlite-wasm": "3.53.4-build2"
+  }
+}
