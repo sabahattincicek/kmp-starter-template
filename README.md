@@ -39,7 +39,7 @@ presentation/
   ui/                      theme, shared composables, UiText
   features/<name>/         one module per screen or flow
 build-logic/               convention plugins
-docsagent/                 AI working documents: dev log, roadmap, setup, app plan, design
+docsagent/                 AI working documents: dev log, roadmap, setup, architecture, app plan, design
 ```
 
 ```text
@@ -49,9 +49,10 @@ webApp ─────┘
 ```
 
 Almost all code lives in `commonMain`. The platform source sets (`androidMain`, `iosMain`,
-`wasmJsMain`) hold only what differs, such as where the database file lives. See the Architecture
-section of [`AGENTS.md`](AGENTS.md) for the full folder tree, the rules between the layers, and how
-to add a feature module.
+`wasmJsMain`) hold only what differs, such as where the database file lives. See
+[`docsagent/ARCHITECTURE.md`](docsagent/ARCHITECTURE.md) for the full folder tree and how to add a
+feature module, and the Architecture section of [`AGENTS.md`](AGENTS.md) for the rules between the
+layers.
 
 ## Stack
 

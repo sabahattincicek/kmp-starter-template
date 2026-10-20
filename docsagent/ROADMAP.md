@@ -5,8 +5,10 @@ Everything that is still to be done, organized in phases. Each phase is broken i
 - `- [ ]` open task
 - `- [x]` finished task
 
-Mark tasks as done when they are finished; do not remove them. Add new tasks to the phase they
-belong to, or add a new phase.
+Mark tasks as done when they are finished. When every task of a phase is done, move the phase to
+`ROADMAP_ARCHIVE.md` (newest at the top) and leave one line here:
+`Phase N — done, see ROADMAP_ARCHIVE.md`. Add new tasks to the phase they belong to, or add a new
+phase.
 
 ---
 
