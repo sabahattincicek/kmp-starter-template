@@ -39,7 +39,7 @@ presentation/
   ui/                      theme, shared composables, UiText
   features/<name>/         one module per screen or flow
 build-logic/               convention plugins
-docsagent/                 AI working documents: dev log, roadmap, setup, architecture, services, app plan, design
+docsagent/                 AI working documents: dev log, roadmap, setup, architecture, features, services, app plan, design
 scripts/                   build, test, and lint with a short summary (for AI agents)
 ```
 
@@ -68,6 +68,26 @@ layers.
 | Logging | Kermit |
 | Tests | kotlin.test, Turbine, kotlinx-coroutines-test, run on the JVM, in the browser, and on the iOS simulator |
 | CI | GitHub Actions: Android and web build, tests, and lint on Linux; iOS tests and Xcode build on macOS |
+
+## Saving Tokens: Tips for the Developer
+
+The AI rules already keep each session lean: short build output, reading only what a task needs,
+and documents (`docsagent/FEATURES.md`, `docsagent/SERVICES.md`) that answer "where is this?"
+without a code search. These habits on your side save more:
+
+- **Start a new conversation after every task** (`/clear` in Claude Code). Every message resends
+  the whole conversation, so a long session gets more expensive with each step. The AI reminds you
+  at the end of each task; DEVLOG and ROADMAP carry the context to the next session.
+- **Keep tasks small.** A ROADMAP task should fit in one session. Split anything bigger first.
+- **Ask for a plan before large changes.** Fixing a wrong approach after the code is written costs
+  far more than correcting a plan.
+- **Pick the model for the job.** Routine work (a new screen, tests, small fixes) runs well on a
+  smaller, cheaper model (in Claude Code: Sonnet). Keep the largest model for architecture
+  decisions and hard bugs. Switch with `/model`.
+- **Point to the place.** "Fix the retry button in `ProfileScreen.kt`" costs less than "the retry
+  button is broken somewhere", because the AI does not have to search for it.
+- **Paste only the relevant part of an error.** For a crash, the exception and the first lines of
+  the stack trace are enough.
 
 ## Common Commands
 
