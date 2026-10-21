@@ -40,6 +40,7 @@ presentation/
   features/<name>/         one module per screen or flow
 build-logic/               convention plugins
 docsagent/                 AI working documents: dev log, roadmap, setup, architecture, app plan, design
+scripts/                   build, test, and lint with a short summary (for AI agents)
 ```
 
 ```text
@@ -71,6 +72,7 @@ layers.
 ## Common Commands
 
 ```bash
+scripts/check.sh                                 # build, test, and lint with a short summary (Windows: scripts\check.ps1)
 ./gradlew :androidApp:assembleDebug              # build the Android debug APK
 ./gradlew :webApp:wasmJsBrowserDevelopmentRun    # run the web app at http://localhost:8080
 ./gradlew :webApp:wasmJsBrowserDistribution      # production web build in webApp/build/dist/

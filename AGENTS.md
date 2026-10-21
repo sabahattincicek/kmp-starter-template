@@ -55,6 +55,10 @@ At the start of every session, before writing any code:
   with the tokens and components in `docsagent/DESIGN.md`; no colors, sizes, or fonts outside the
   theme. When a task changes the plan or the design, update those files (and
   `docsagent/design.html`) and their decision log in the same piece of work.
+- **Search cheaply.** Find code with grep and glob, and open only the files and line ranges you
+  need. For broad searches across many files, use the tool's built-in search subagent if it has one
+  (Claude Code: `Explore`), so only its short answer enters the conversation. Search directly when
+  one grep is enough.
 - **Language.** Write code identifiers, comments, log messages, and commit messages in the language
   set in Project Settings. User-facing text follows the app's own localization.
 
@@ -62,19 +66,34 @@ At the start of every session, before writing any code:
 
 A task is finished only when all of these are true:
 
-1. The Android and web apps build (`./gradlew :androidApp:assembleDebug
-   :webApp:wasmJsBrowserDistribution`).
-2. Unit tests are updated and pass (`./gradlew allTests`: Android host tests and browser tests;
-   on macOS also the iOS simulator tests).
-3. Lint reports no new issues (`./gradlew lint`).
-4. New and changed code follows the comment and logging rules below.
-5. `docsagent/DEVLOG.md` has a new entry for the work.
-6. The matching `docsagent/ROADMAP.md` tasks are marked `[x]`.
+1. The build wrapper prints `BUILD OK`: `scripts/check.ps1` on Windows, `scripts/check.sh` on
+   macOS and Linux. With no arguments it builds the Android and web apps, runs all unit tests
+   (Android host and browser), and runs lint. On macOS, add `--ios` for the iOS simulator tests
+   and the Xcode build.
+2. Unit tests are updated for the change.
+3. New and changed code follows the comment and logging rules below.
+4. `docsagent/DEVLOG.md` has a new entry for the work.
+5. The matching `docsagent/ROADMAP.md` tasks are marked `[x]`.
 
-The same commands run in CI on every push and pull request (`.github/workflows/ci.yml`), plus an
+CI runs the same Gradle tasks on every push and pull request (`.github/workflows/ci.yml`), plus an
 iOS build on macOS. iOS code cannot be built on Windows or Linux: Kotlin still compiles the iOS
 source sets there and reports errors, but the app itself is built only on macOS (CI or a Mac).
 Never report a task as done while any of these is missing; say what is still open.
+
+When the task is done (after DEVLOG and ROADMAP are updated), end your last message to the
+developer with this line: `Task done. Run /clear before the next task.` Do not start a new task
+in the same session on your own.
+
+### Running the build
+
+- Build, test, and lint through the wrapper, not with raw Gradle. It writes the full output to
+  `build/agent-logs/last-build.log` and prints only a summary: one line on success; the compile
+  errors, failed tests, and lint errors on failure.
+- While working, pass only the tasks you need, for example `scripts/check.ps1 :domain:allTests`.
+  Run it without arguments before calling the task done.
+- If the summary is not enough to understand a failure, search `last-build.log` with grep instead
+  of reading it whole or running the build again. Run Gradle directly only when the log does not
+  answer it either.
 
 ---
 
@@ -156,7 +175,8 @@ session can understand the project without reading all the code.
 - **New entries go at the top of the file**, directly under the header. The file reads from newest
   to oldest.
 - Write what changed, why, and which files or areas were touched. Note decisions and anything a
-  future session needs to know.
+  future session needs to know. Keep an entry short (about ten bullet points at most): every
+  session reads the newest entries.
 - Never rewrite or delete older entries.
 
 ---
