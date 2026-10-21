@@ -96,8 +96,8 @@ Then sync Gradle and build again.
 
 * **Start screen:** the app opens a placeholder screen that shows the app name
   (`app/.../navigation/StartPlaceholder.kt`). Add your first feature (see "Adding a feature
-  module" in `AGENTS.md`), start the back stack in `AppNavDisplay` with its key, and delete the
-  placeholder.
+  module" in `docsagent/ARCHITECTURE.md`), start the back stack in `AppNavDisplay` with its key, and
+  delete the placeholder.
 * **`ExampleEntity` / `ExampleDao`** in `data/.../local/database/`: Room needs at least one entity,
   so replace them with your first real table instead of just deleting them. Delete `data/schemas/`
   as well so the schema starts fresh at version 1.
@@ -143,6 +143,9 @@ project:
 | `docsagent/DEVLOG.md` | Timestamped log of what has been done, newest entry first, so the AI does not have to re-read the whole codebase every session. |
 | `docsagent/ROADMAP.md` | Planned work, split into phases and checkbox tasks (`[ ]` open, `[x]` done). |
 | `docsagent/PROJECT_DISCOVERY.md` | The questions the AI asks to write the app plan and the design criteria. |
+| `docsagent/FIRST_SESSION.md` | What the AI asks and does in the first session (AI tool, git, project discovery). |
+| `docsagent/ARCHITECTURE.md` | Full folder tree, parts of a feature module, and how to add one. |
+| `docsagent/ROADMAP_ARCHIVE.md` | Finished roadmap phases, moved out of `ROADMAP.md`. |
 
 Things to do:
 
