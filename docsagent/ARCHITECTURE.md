@@ -47,7 +47,8 @@ presentation/                 UI layer
   features/<name>/            :presentation:features:<name> — one module per screen or flow
 build-logic/                  convention plugins (see build-logic/README.md)
 docsagent/                    AI working documents: DEVLOG, ROADMAP (and its archive), SETUP,
-                              first session, architecture, project discovery, app plan, design
+                              first session, architecture, services, project discovery, app plan,
+                              design
 scripts/                      check.ps1 and check.sh: build, test, and lint with a short summary
 ```
 

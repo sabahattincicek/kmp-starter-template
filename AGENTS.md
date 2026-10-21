@@ -15,7 +15,7 @@ Filled in once, on the first session (see [`docsagent/FIRST_SESSION.md`](docsage
 - **Project discovery (app plan and design):** `NOT DONE` <!-- "DONE" once the plan and design files in docsagent/ are approved -->
 
 The AI working documents (development log, roadmap, setup guide, first session steps,
-architecture, project discovery, app plan, design) live together in [`docsagent/`](docsagent/).
+architecture, third-party services, project discovery, app plan, design) live together in [`docsagent/`](docsagent/).
 Only this file and `README.md` stay in the root, because tools load this file from there.
 
 If any Project Setting is `NOT SET`, or "Project discovery" is `NOT DONE`, follow
@@ -51,6 +51,11 @@ At the start of every session, before writing any code:
 - **Shared code first.** Write code in `commonMain`. Use a platform source set (`androidMain`,
   `iosMain`, `wasmJsMain`) only for what a platform does differently, through `expect`/`actual` or
   a Koin module per platform, and keep the platform part as small as possible.
+- **Third-party services.** [`docsagent/SERVICES.md`](docsagent/SERVICES.md) lists every
+  outside service (backend, analytics, crash reporting, push, payments, and so on), the features
+  that use it, and where it is wired in. Read it instead of searching the code when a task touches
+  a service. Ask before adding a service, just like a library, and update the file in the same
+  piece of work that adds, removes, or changes one. Never write secrets into it.
 - **Follow the plan and the design.** Build what `docsagent/APP_PLAN.md` describes and style the UI
   with the tokens and components in `docsagent/DESIGN.md`; no colors, sizes, or fonts outside the
   theme. When a task changes the plan or the design, update those files (and
@@ -72,7 +77,8 @@ A task is finished only when all of these are true:
    and the Xcode build.
 2. Unit tests are updated for the change.
 3. New and changed code follows the comment and logging rules below.
-4. `docsagent/DEVLOG.md` has a new entry for the work.
+4. `docsagent/DEVLOG.md` has a new entry for the work, and `docsagent/SERVICES.md` is up to date
+   if a service was added, removed, or changed.
 5. The matching `docsagent/ROADMAP.md` tasks are marked `[x]`.
 
 CI runs the same Gradle tasks on every push and pull request (`.github/workflows/ci.yml`), plus an

@@ -39,7 +39,7 @@ presentation/
   ui/                      theme, shared composables, UiText
   features/<name>/         one module per screen or flow
 build-logic/               convention plugins
-docsagent/                 AI working documents: dev log, roadmap, setup, architecture, app plan, design
+docsagent/                 AI working documents: dev log, roadmap, setup, architecture, services, app plan, design
 scripts/                   build, test, and lint with a short summary (for AI agents)
 ```
 
