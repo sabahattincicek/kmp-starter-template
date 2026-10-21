@@ -1,0 +1,16 @@
+# Files hidden from ripgrep-based code search (used by AI coding tools such as Claude Code), on top
+# of .gitignore. They are generated or rarely edited by hand and would only fill search results.
+# They stay in git; read one by its path when a task really needs it.
+
+# Room schema exports, one JSON file per database version
+data/schemas/
+
+# Lock file of the Kotlin/Wasm npm dependencies
+kotlin-js-store/
+
+# Xcode project files and asset catalogs
+iosApp/iosApp.xcodeproj/
+iosApp/iosApp/Assets.xcassets/
+
+# Visual design reference written during project discovery
+docsagent/design.html

@@ -15,7 +15,7 @@ Filled in once, on the first session (see [`docsagent/FIRST_SESSION.md`](docsage
 - **Project discovery (app plan and design):** `NOT DONE` <!-- "DONE" once the plan and design files in docsagent/ are approved -->
 
 The AI working documents (development log, roadmap, setup guide, first session steps,
-architecture, third-party services, project discovery, app plan, design) live together in [`docsagent/`](docsagent/).
+architecture, feature map, third-party services, project discovery, app plan, design) live together in [`docsagent/`](docsagent/).
 Only this file and `README.md` stay in the root, because tools load this file from there.
 
 If any Project Setting is `NOT SET`, or "Project discovery" is `NOT DONE`, follow
@@ -63,7 +63,11 @@ At the start of every session, before writing any code:
 - **Search cheaply.** Find code with grep and glob, and open only the files and line ranges you
   need. For broad searches across many files, use the tool's built-in search subagent if it has one
   (Claude Code: `Explore`), so only its short answer enters the conversation. Search directly when
-  one grep is enough.
+  one grep is enough. Files listed in `.ignore` (generated files such as Room schemas) are left out
+  of search on purpose; read one by its path only when the task needs it.
+- **Feature map.** [`docsagent/FEATURES.md`](docsagent/FEATURES.md) has one line per feature: what
+  it does, its module, its use cases, and its services. When a task mentions a feature, look it up
+  there first. Update the row in the same piece of work that adds, changes, or removes a feature.
 - **Language.** Write code identifiers, comments, log messages, and commit messages in the language
   set in Project Settings. User-facing text follows the app's own localization.
 
@@ -77,8 +81,8 @@ A task is finished only when all of these are true:
    and the Xcode build.
 2. Unit tests are updated for the change.
 3. New and changed code follows the comment and logging rules below.
-4. `docsagent/DEVLOG.md` has a new entry for the work, and `docsagent/SERVICES.md` is up to date
-   if a service was added, removed, or changed.
+4. `docsagent/DEVLOG.md` has a new entry for the work. `docsagent/FEATURES.md` and
+   `docsagent/SERVICES.md` are up to date if a feature or a service was added, changed, or removed.
 5. The matching `docsagent/ROADMAP.md` tasks are marked `[x]`.
 
 CI runs the same Gradle tasks on every push and pull request (`.github/workflows/ci.yml`), plus an
@@ -245,6 +249,9 @@ Rules:
 - **Build configuration:** shared setup lives in the `build-logic/` convention plugins; a module's
   `build.gradle.kts` only applies plugins, sets its namespace, and lists its own dependencies. All
   library versions go in `gradle/libs.versions.toml`.
+- **Small files:** keep a file under about 300 lines, because an AI reads whole files and pays for
+  every line. Split a growing screen into smaller composables and a growing ViewModel into use
+  cases.
 
 ---
 

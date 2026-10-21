@@ -47,8 +47,8 @@ presentation/                 UI layer
   features/<name>/            :presentation:features:<name> — one module per screen or flow
 build-logic/                  convention plugins (see build-logic/README.md)
 docsagent/                    AI working documents: DEVLOG, ROADMAP (and its archive), SETUP,
-                              first session, architecture, services, project discovery, app plan,
-                              design
+                              first session, architecture, features, services, project discovery,
+                              app plan, design
 scripts/                      check.ps1 and check.sh: build, test, and lint with a short summary
 ```
 
@@ -90,3 +90,21 @@ A feature module contains `<Name>Screen` (stateless), `<Name>Route` (stateful, g
    add its Koin module to `featureModules` in `di/Koin.kt`, register its `NavKey` in `navKeys` and
    call its `xxxEntry()` in `navigation/AppNavDisplay.kt`. For the first feature, start the back
    stack with its key and delete `StartKey` and `StartPlaceholder.kt`.
+6. Add a row for the feature to [`FEATURES.md`](FEATURES.md).
+
+### Feature module generator
+
+**Status:** `NOT OFFERED` <!-- "NOT OFFERED", "DECLINED", or "BUILT" -->
+
+The steps above write the same boilerplate for every feature. Once the project has **four or more
+feature modules** and the status is `NOT OFFERED`, tell the developer once, when the next feature is
+being added:
+
+> The feature modules now follow a settled pattern. I can add a `newFeature` Gradle task (like
+> `renameProject`) that generates a new feature module from this project's own conventions and
+> registers it. Every later feature then costs fewer tokens and starts out consistent. Shall I
+> build it?
+
+If they agree, build the task from the project's existing features (not from this template's
+placeholders), test it by generating and building a throwaway feature, and point the steps above to
+it. Set the status to `BUILT` or `DECLINED` and do not offer it again.
