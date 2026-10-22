@@ -24,3 +24,14 @@ iosApp/build/
 xcuserdata/
 *.xcworkspace/xcuserdata/
 DerivedData/
+
+# Python bytecode of the helper scripts
+__pycache__/
+
+# Claude Code: personal settings stay on each machine
+.claude/settings.local.json
+
+# Session token summaries written by scripts/token_usage.py. Ignored only in the template itself:
+# a project made from it deletes this line in its first session (docsagent/FIRST_SESSION.md),
+# so the summaries of every device are committed.
+docsagent/token-usage/

@@ -26,6 +26,14 @@ Keep the renamed file in the root (or in `.github/` for Copilot); tools do not l
 `docsagent/`. After renaming, update every reference to `AGENTS.md` in `README.md`, the CI
 workflow, and the files in `docsagent/`.
 
+Then set up the token usage log, which only works with Claude Code:
+
+- **Claude Code:** delete the `docsagent/token-usage/` line (and its comment) from `.gitignore`.
+  The hooks in `.claude/settings.json` then record every session's token counts in
+  `docsagent/token-usage/`, one file per session, and those files are committed like any other.
+- **Any other tool:** delete `.claude/settings.json`, `scripts/token_usage.py`, and
+  `scripts/test_token_usage.py`.
+
 **2. Who makes git commits and pushes?**
 
 > Should I make the git commits and pushes myself, or will you do them?

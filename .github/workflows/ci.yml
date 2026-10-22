@@ -44,6 +44,9 @@ jobs:
       - name: Lint
         run: ./gradlew lint
 
+      - name: Token usage script tests
+        run: if [ -f scripts/test_token_usage.py ]; then python3 -m unittest discover -s scripts; fi
+
       - name: Upload reports
         if: failure()
         uses: actions/upload-artifact@v7

@@ -146,6 +146,7 @@ project:
 | `docsagent/FIRST_SESSION.md` | What the AI asks and does in the first session (AI tool, git, project discovery). |
 | `docsagent/ARCHITECTURE.md` | Full folder tree, parts of a feature module, and how to add one. |
 | `docsagent/ROADMAP_ARCHIVE.md` | Finished roadmap phases, moved out of `ROADMAP.md`. |
+| `.claude/settings.json`, `scripts/token_usage.py` | Claude Code only: hooks that record each session's token counts in `docsagent/token-usage/`, and the report (`python3 scripts/token_usage.py report`). |
 
 Things to do:
 

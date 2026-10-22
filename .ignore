@@ -14,3 +14,6 @@ iosApp/iosApp/Assets.xcassets/
 
 # Visual design reference written during project discovery
 docsagent/design.html
+
+# Session token summaries, one JSON file per Claude Code session (scripts/token_usage.py)
+docsagent/token-usage/

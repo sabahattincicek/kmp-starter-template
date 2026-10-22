@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/scripts/token_usage.py\" sync >/dev/null 2>&1 || python \"$CLAUDE_PROJECT_DIR/scripts/token_usage.py\" sync >/dev/null 2>&1 || true",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/scripts/token_usage.py\" sync >/dev/null 2>&1 || python \"$CLAUDE_PROJECT_DIR/scripts/token_usage.py\" sync >/dev/null 2>&1 || true",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

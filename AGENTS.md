@@ -68,6 +68,9 @@ At the start of every session, before writing any code:
 - **Feature map.** [`docsagent/FEATURES.md`](docsagent/FEATURES.md) has one line per feature: what
   it does, its module, its use cases, and its services. When a task mentions a feature, look it up
   there first. Update the row in the same piece of work that adds, changes, or removes a feature.
+- **Token usage log.** The Claude Code hooks write `docsagent/token-usage/` on their own. Never
+  edit those files, and read them only through `python3 scripts/token_usage.py report` (`python` on
+  Windows) when the developer asks about token usage.
 - **Language.** Write code identifiers, comments, log messages, and commit messages in the language
   set in Project Settings. User-facing text follows the app's own localization.
 
